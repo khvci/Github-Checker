@@ -51,26 +51,29 @@ public class Main {
 
     private static void readSource(String group) throws IOException {
 
-        String[] linkList = new String[4];
+
+        ArrayList<String> linkList = new ArrayList<String>();
 
         if (group.equals("followers")) {
-            linkList[0] = "https://github.com/khvci?page=1&tab=followers";
-            linkList[1] = "https://github.com/khvci?page=2&tab=followers";
-            linkList[2] = "https://github.com/khvci?page=3&tab=followers";
-            linkList[3] = "https://github.com/khvci?page=4&tab=followers";
+            linkList.add(0, "https://github.com/khvci?page=1&tab=followers");
+            linkList.add(1, "https://github.com/khvci?page=2&tab=followers");
+            linkList.add(2, "https://github.com/khvci?page=3&tab=followers");
+            linkList.add(3, "https://github.com/khvci?page=4&tab=followers");
+            linkList.add(4, "https://github.com/khvci?page=5&tab=followers");
         } else {
-            linkList[0] = "https://github.com/khvci?page=1&tab=following";
-            linkList[1] = "https://github.com/khvci?page=2&tab=following";
-            linkList[2] = "https://github.com/khvci?page=3&tab=following";
-            linkList[3] = "https://github.com/khvci?page=4&tab=following";
+            linkList.add(0, "https://github.com/khvci?page=1&tab=following");
+            linkList.add(1, "https://github.com/khvci?page=2&tab=following");
+            linkList.add(2, "https://github.com/khvci?page=3&tab=following");
+            linkList.add(3, "https://github.com/khvci?page=4&tab=following");
+            //linkList.add(4, "https://github.com/khvci?page=5&tab=following");
         }
 
         String content = null;
 
-        for (String i : linkList) {
+        for (int i = 0; i < linkList.size(); i++) {
             URLConnection connection = null;
             try {
-                connection = new URL(i).openConnection();
+                connection = new URL(linkList.get(i).toString()).openConnection();
                 Scanner scanner = new Scanner(connection.getInputStream());
                 scanner.useDelimiter("\\Z");
                 content += scanner.next();
