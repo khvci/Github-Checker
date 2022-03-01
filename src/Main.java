@@ -15,16 +15,12 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        InputStream followerStream = new FileInputStream(followerPath);
-        InputStream followingStream = new FileInputStream(followingPath);
+        InputStream followerStream = new FileInputStream("src/followers.txt");
+        InputStream followingStream = new FileInputStream("src/following.txt");
 
         getResults(followerStream, followingStream);
 
     }
-
-
-    static String followerPath = "src/followers.txt";
-    static String followingPath = "src/following.txt";
 
     static ArrayList followersSet = new ArrayList();
     static ArrayList followingSet = new ArrayList();
