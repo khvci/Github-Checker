@@ -22,10 +22,10 @@ public class Main {
 
     }
 
-    static ArrayList followersSet = new ArrayList();
-    static ArrayList followingSet = new ArrayList();
+    static ArrayList followersSet = new ArrayList(250);
+    static ArrayList followingSet = new ArrayList(200);
     static ArrayList dontFollowYou = new ArrayList();
-    static ArrayList youDontFollow = new ArrayList();
+    static ArrayList youDontFollow = new ArrayList(100);
 
 
     private static void getResults(InputStream followerStream, InputStream followingStream) throws IOException {
@@ -55,7 +55,7 @@ public class Main {
             linkList.add("https://github.com/khvci?page=2&tab=followers");
             linkList.add("https://github.com/khvci?page=3&tab=followers");
             linkList.add("https://github.com/khvci?page=4&tab=followers");
-            linkList.add("https://github.com/khvci?page=5&tab=followers");
+            //linkList.add("https://github.com/khvci?page=5&tab=followers");
         } else {
             linkList.add("https://github.com/khvci?page=1&tab=following");
             linkList.add("https://github.com/khvci?page=2&tab=following");
