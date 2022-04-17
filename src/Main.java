@@ -22,10 +22,10 @@ public class Main {
 
     }
 
-    static ArrayList followersSet = new ArrayList(250);
-    static ArrayList followingSet = new ArrayList(200);
-    static ArrayList dontFollowYou = new ArrayList();
-    static ArrayList youDontFollow = new ArrayList(100);
+    static ArrayList<String> followersSet = new ArrayList<>(250);
+    static ArrayList<String> followingSet = new ArrayList<>(200);
+    static ArrayList<Object> dontFollowYou = new ArrayList<>();
+    static ArrayList<Object> youDontFollow = new ArrayList<>(100);
 
 
     private static void getResults(InputStream followerStream, InputStream followingStream) throws IOException {
@@ -48,7 +48,7 @@ public class Main {
     private static void readSource(String group) throws IOException {
 
 
-        ArrayList<String> linkList = new ArrayList<String>();
+        ArrayList<String> linkList = new ArrayList<>();
 
         if (group.equals("followers")) {
             linkList.add("https://github.com/khvci?page=1&tab=followers");
@@ -64,15 +64,15 @@ public class Main {
             //linkList.add("https://github.com/khvci?page=5&tab=following");
         }
 
-        String content = null;
+        StringBuilder content = new StringBuilder();
 
-        for (int i = 0; i < linkList.size(); i++) {
-            URLConnection connection = null;
+        for (String s : linkList) {
+            URLConnection connection;
             try {
-                connection = new URL(linkList.get(i).toString()).openConnection();
+                connection = new URL(s).openConnection();
                 Scanner scanner = new Scanner(connection.getInputStream());
                 scanner.useDelimiter("\\Z");
-                content += scanner.next();
+                content.append(scanner.next());
                 scanner.close();
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -81,10 +81,10 @@ public class Main {
         }
         if (group.equals("followers")) {
             Path followers = Path.of("src/followers.txt");
-            Files.writeString(followers, content);
+            Files.writeString(followers, content.toString());
         } else {
             Path following = Path.of("src/following.txt");
-            Files.writeString(following, content);
+            Files.writeString(following, content.toString());
         }
     }
 
@@ -104,7 +104,7 @@ public class Main {
     }
 
 
-    private static void followingSetBuilder(ArrayList followingSet, InputStream followingStream) {
+    private static void followingSetBuilder(ArrayList<String> followingSet, InputStream followingStream) {
         try (Scanner scannerFollowing = new Scanner(followingStream, StandardCharsets.UTF_8.name())) {
             while (scannerFollowing.hasNextLine()) {
                 String followingLine = scannerFollowing.nextLine();
@@ -116,7 +116,7 @@ public class Main {
     }
 
 
-    private static void followersSetBuilder(ArrayList followersSet, InputStream followerStream) {
+    private static void followersSetBuilder(ArrayList<String> followersSet, InputStream followerStream) {
         try (Scanner scannerFollower = new Scanner(followerStream, StandardCharsets.UTF_8.name())) {
             while (scannerFollower.hasNextLine()) {
                 String followerLine = scannerFollower.nextLine();
@@ -128,8 +128,9 @@ public class Main {
     }
 
 
-    private static void differenceFinder(ArrayList followersHash, ArrayList followingHash, ArrayList dontFollowYou,
-                                         ArrayList youDontFollow) {
+    @SuppressWarnings("SuspiciousMethodCalls")
+    private static void differenceFinder(ArrayList<String> followersHash, ArrayList<String> followingHash, ArrayList<Object> dontFollowYou,
+                                         ArrayList<Object> youDontFollow) {
         for (Object i : followersHash) {
             if (!followingHash.contains(i)) {
                 youDontFollow.add(i);
@@ -144,8 +145,8 @@ public class Main {
     }
 
 
-    private static void printResults(long startTime, ArrayList followersSet, ArrayList followingSet, ArrayList dontFollowYou,
-                                     ArrayList youDontFollow) {
+    private static void printResults(long startTime, ArrayList<String> followersSet, ArrayList<String> followingSet, ArrayList<Object> dontFollowYou,
+                                     ArrayList<Object> youDontFollow) {
         System.out.print("\nFollowers: " + followersSet.size());
         System.out.println(" | Following: " + followingSet.size());
 
