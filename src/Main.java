@@ -14,6 +14,9 @@ public class Main {
     static long startTime = System.nanoTime();
 
     public static void main(String[] args) throws IOException {
+        TxtFileManager txtFileManager = new TxtFileManager();
+        txtFileManager.createTxtFile("followers.txt");
+        txtFileManager.createTxtFile("following.txt");
 
         InputStream followerStream = new FileInputStream("src/followers.txt");
         InputStream followingStream = new FileInputStream("src/following.txt");
