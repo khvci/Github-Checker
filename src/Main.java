@@ -8,8 +8,7 @@ public class Main {
     static String userName = "khvci";
     static ArrayList<String> followersSet = new ArrayList<>();
     static ArrayList<String> followingSet = new ArrayList<>();
-    static ArrayList<Object> dontFollowYou = new ArrayList<>();
-    static ArrayList<Object> youDontFollow = new ArrayList<>();
+
 
     public static void main(String[] args) throws IOException {
         TxtFileManager txtFileManager = new TxtFileManager();
@@ -36,9 +35,10 @@ public class Main {
         arrayBuilder.arrayBuilder(followersSet, followerStream);
         arrayBuilder.arrayBuilder(followingSet, followingStream);
 
-        differenceFinder(followersSet, followingSet, dontFollowYou, youDontFollow);
+        DifferenceFinder differenceFinder = new DifferenceFinder();
+        differenceFinder.findDifference(followersSet, followingSet);
 
-        printResults(startTime, followersSet, followingSet, dontFollowYou, youDontFollow);
+        printResults(startTime, followersSet, followingSet, differenceFinder.dontFollowYou, differenceFinder.youDontFollow);
     }
 
 
@@ -53,23 +53,6 @@ public class Main {
         }
 
         return newString.toString();
-    }
-
-
-    @SuppressWarnings("SuspiciousMethodCalls")
-    private static void differenceFinder(ArrayList<String> followersHash, ArrayList<String> followingHash, ArrayList<Object> dontFollowYou,
-                                         ArrayList<Object> youDontFollow) {
-        for (Object i : followersHash) {
-            if (!followingHash.contains(i)) {
-                youDontFollow.add(i);
-            }
-        }
-
-        for (Object j : followingHash) {
-            if (!followersHash.contains(j)) {
-                dontFollowYou.add(j);
-            }
-        }
     }
 
 
