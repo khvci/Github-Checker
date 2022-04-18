@@ -1,5 +1,4 @@
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -12,6 +11,12 @@ import java.util.Scanner;
 
 public class Main {
     static long startTime = System.nanoTime();
+    static String userName = "khvci";
+    static ArrayList<String> followersSet = new ArrayList<>();
+    static ArrayList<String> followingSet = new ArrayList<>();
+    static ArrayList<Object> dontFollowYou = new ArrayList<>();
+    static ArrayList<Object> youDontFollow = new ArrayList<>();
+
 
     public static void main(String[] args) throws IOException {
         TxtFileManager txtFileManager = new TxtFileManager();
@@ -21,17 +26,13 @@ public class Main {
         InputStream followerStream = new FileInputStream("src/followers.txt");
         InputStream followingStream = new FileInputStream("src/following.txt");
 
-        getResults("khvci", followerStream, followingStream);
+        getResults(userName, followerStream, followingStream);
 
         txtFileManager.deleteTxtFile("followers.txt");
         txtFileManager.deleteTxtFile("following.txt");
 
     }
 
-    static ArrayList<String> followersSet = new ArrayList<>();
-    static ArrayList<String> followingSet = new ArrayList<>();
-    static ArrayList<Object> dontFollowYou = new ArrayList<>();
-    static ArrayList<Object> youDontFollow = new ArrayList<>();
 
 
     private static void getResults(String userName, InputStream followerStream, InputStream followingStream) throws IOException {
