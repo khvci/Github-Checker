@@ -21,18 +21,12 @@ public class SourceReader {
                 Scanner scanner = new Scanner(connection.getInputStream());
                 scanner.useDelimiter("\\Z");
                 content.append(scanner.next());
-                scanner.close();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
+        }
 
-        }
-        if (group.equals("followers")) {
-            Path followers = Path.of("src/followers.txt");
-            Files.writeString(followers, content.toString());
-        } else {
-            Path following = Path.of("src/following.txt");
-            Files.writeString(following, content.toString());
-        }
+        Path path = Path.of("src/" + group + ".txt");
+        Files.writeString(path, content.toString());
     }
 }
