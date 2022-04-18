@@ -9,7 +9,6 @@ public class Main {
     static ArrayList<String> followersSet = new ArrayList<>();
     static ArrayList<String> followingSet = new ArrayList<>();
 
-
     public static void main(String[] args) throws IOException {
         TxtFileManager txtFileManager = new TxtFileManager();
         txtFileManager.createTxtFile("followers.txt");
@@ -18,16 +17,6 @@ public class Main {
         InputStream followerStream = new FileInputStream("src/followers.txt");
         InputStream followingStream = new FileInputStream("src/following.txt");
 
-        getResults(userName, followerStream, followingStream);
-
-        txtFileManager.deleteTxtFile("followers.txt");
-        txtFileManager.deleteTxtFile("following.txt");
-
-        System.out.println("\nTotal runtime: " + (System.nanoTime() - startTime) / 1000000 + " ms.");
-    }
-
-
-    private static void getResults(String userName, InputStream followerStream, InputStream followingStream) throws IOException {
         SourceReader sourceReader = new SourceReader();
         sourceReader.readSource(userName, 5, "followers");
         sourceReader.readSource(userName, 4, "following");
@@ -42,5 +31,10 @@ public class Main {
         ResultPrinter resultPrinter = new ResultPrinter();
         resultPrinter.printResults(startTime, followersSet, followingSet,
                 differenceFinder.dontFollowYou, differenceFinder.youDontFollow);
+
+        txtFileManager.deleteTxtFile("followers.txt");
+        txtFileManager.deleteTxtFile("following.txt");
+
+        System.out.println("\nTotal runtime: " + (System.nanoTime() - startTime) / 1000000 + " ms.");
     }
 }
