@@ -1,13 +1,7 @@
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Main {
     static long startTime = System.nanoTime();
@@ -16,7 +10,6 @@ public class Main {
     static ArrayList<String> followingSet = new ArrayList<>();
     static ArrayList<Object> dontFollowYou = new ArrayList<>();
     static ArrayList<Object> youDontFollow = new ArrayList<>();
-
 
     public static void main(String[] args) throws IOException {
         TxtFileManager txtFileManager = new TxtFileManager();
@@ -34,15 +27,14 @@ public class Main {
     }
 
 
-
     private static void getResults(String userName, InputStream followerStream, InputStream followingStream) throws IOException {
         SourceReader sourceReader = new SourceReader();
         sourceReader.readSource(userName, 5, "followers");
         sourceReader.readSource(userName, 4, "following");
 
-        followersSetBuilder(followersSet, followerStream);
-
-        followingSetBuilder(followingSet, followingStream);
+        ArrayBuilder arrayBuilder = new ArrayBuilder();
+        arrayBuilder.arrayBuilder(followersSet, followerStream);
+        arrayBuilder.arrayBuilder(followingSet, followingStream);
 
         differenceFinder(followersSet, followingSet, dontFollowYou, youDontFollow);
 
@@ -50,7 +42,7 @@ public class Main {
     }
 
 
-    private static String getUserName(String str) {
+    public static String getUserName(String str) {
         String removeHead = str.substring(str.indexOf("      <a class=\"d-inline-block\" data-hovercard-type=\"user\" data-hovercard-url=\"/users/") + 86);
 
         int lastIndex = removeHead.lastIndexOf("/hovercard\" data-octo-click=\"");
@@ -61,30 +53,6 @@ public class Main {
         }
 
         return newString.toString();
-    }
-
-
-    private static void followingSetBuilder(ArrayList<String> followingSet, InputStream followingStream) {
-        try (Scanner scannerFollowing = new Scanner(followingStream, StandardCharsets.UTF_8.name())) {
-            while (scannerFollowing.hasNextLine()) {
-                String followingLine = scannerFollowing.nextLine();
-                if (followingLine.startsWith("      <a class=\"d-inline-block\" data-hovercard-type=\"user\" data-hovercard-url=\"/users/")) {
-                    followingSet.add(getUserName(followingLine));
-                }
-            }
-        }
-    }
-
-
-    private static void followersSetBuilder(ArrayList<String> followersSet, InputStream followerStream) {
-        try (Scanner scannerFollower = new Scanner(followerStream, StandardCharsets.UTF_8.name())) {
-            while (scannerFollower.hasNextLine()) {
-                String followerLine = scannerFollower.nextLine();
-                if (followerLine.startsWith("      <a class=\"d-inline-block\" data-hovercard-type=\"user\" data-hovercard-url=\"/users/")) {
-                    followersSet.add(getUserName(followerLine));
-                }
-            }
-        }
     }
 
 
@@ -115,5 +83,4 @@ public class Main {
 
         System.out.println("\nTotal runtime: " + (System.nanoTime() - startTime) / 1000000 + " ms.");
     }
-
 }
