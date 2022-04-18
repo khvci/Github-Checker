@@ -18,19 +18,19 @@ public class Main {
         InputStream followerStream = new FileInputStream("src/followers.txt");
         InputStream followingStream = new FileInputStream("src/following.txt");
 
-        getResults(followerStream, followingStream);
+        getResults("khvci", followerStream, followingStream);
 
     }
 
-    static ArrayList<String> followersSet = new ArrayList<>(250);
-    static ArrayList<String> followingSet = new ArrayList<>(200);
+    static ArrayList<String> followersSet = new ArrayList<>();
+    static ArrayList<String> followingSet = new ArrayList<>();
     static ArrayList<Object> dontFollowYou = new ArrayList<>();
-    static ArrayList<Object> youDontFollow = new ArrayList<>(100);
+    static ArrayList<Object> youDontFollow = new ArrayList<>();
 
 
-    private static void getResults(InputStream followerStream, InputStream followingStream) throws IOException {
-        readSource("khvci", 5, "followers");
-        readSource("khvci", 4, "following");
+    private static void getResults(String userName, InputStream followerStream, InputStream followingStream) throws IOException {
+        readSource(userName, 5, "followers");
+        readSource(userName, 4, "following");
 
         followersSetBuilder(followersSet, followerStream);
 
