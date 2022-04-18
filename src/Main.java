@@ -45,9 +45,6 @@ public class Main {
         differenceFinder(followersSet, followingSet, dontFollowYou, youDontFollow);
 
         printResults(startTime, followersSet, followingSet, dontFollowYou, youDontFollow);
-
-        new FileOutputStream("src/followers.txt").close();
-        new FileOutputStream("src/following.txt").close();
     }
 
 
