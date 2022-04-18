@@ -6,8 +6,8 @@ import java.util.ArrayList;
 public class Main {
     static long startTime = System.nanoTime();
     static String userName = "khvci";
-    static ArrayList<String> followersSet = new ArrayList<>();
-    static ArrayList<String> followingSet = new ArrayList<>();
+    static ArrayList<String> followers = new ArrayList<>();
+    static ArrayList<String> following = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
         TxtFileManager txtFileManager = new TxtFileManager();
@@ -22,14 +22,14 @@ public class Main {
         sourceReader.readSource(userName, 4, "following");
 
         ArrayBuilder arrayBuilder = new ArrayBuilder();
-        arrayBuilder.arrayBuilder(followersSet, followerStream);
-        arrayBuilder.arrayBuilder(followingSet, followingStream);
+        arrayBuilder.arrayBuilder(followers, followerStream);
+        arrayBuilder.arrayBuilder(following, followingStream);
 
         DifferenceFinder differenceFinder = new DifferenceFinder();
-        differenceFinder.findDifference(followersSet, followingSet);
+        differenceFinder.findDifference(followers, following);
 
         ResultPrinter resultPrinter = new ResultPrinter();
-        resultPrinter.printResults(startTime, followersSet, followingSet,
+        resultPrinter.printResults(startTime, followers, following,
                 differenceFinder.dontFollowYou, differenceFinder.youDontFollow);
 
         txtFileManager.deleteTxtFile("followers.txt");

@@ -27,6 +27,6 @@ public class SourceReader {
         }
 
         Path path = Path.of("src/" + group + ".txt");
-        Files.writeString(path, content.toString());
+        Files.writeString(path, content);
     }
 }
