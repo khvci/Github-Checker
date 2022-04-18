@@ -23,6 +23,7 @@ public class Main {
         txtFileManager.deleteTxtFile("followers.txt");
         txtFileManager.deleteTxtFile("following.txt");
 
+        System.out.println("\nTotal runtime: " + (System.nanoTime() - startTime) / 1000000 + " ms.");
     }
 
 
@@ -38,7 +39,9 @@ public class Main {
         DifferenceFinder differenceFinder = new DifferenceFinder();
         differenceFinder.findDifference(followersSet, followingSet);
 
-        printResults(startTime, followersSet, followingSet, differenceFinder.dontFollowYou, differenceFinder.youDontFollow);
+        ResultPrinter resultPrinter = new ResultPrinter();
+        resultPrinter.printResults(startTime, followersSet, followingSet,
+                differenceFinder.dontFollowYou, differenceFinder.youDontFollow);
     }
 
 
@@ -55,15 +58,4 @@ public class Main {
         return newString.toString();
     }
 
-
-    private static void printResults(long startTime, ArrayList<String> followersSet, ArrayList<String> followingSet, ArrayList<Object> dontFollowYou,
-                                     ArrayList<Object> youDontFollow) {
-        System.out.print("\nFollowers: " + followersSet.size());
-        System.out.println(" | Following: " + followingSet.size());
-
-        System.out.println("\nWho does not follow you back: " + dontFollowYou.size() + "\n" + dontFollowYou);
-        System.out.println("\nWho you do not follow back: " + youDontFollow.size() + "\n" + youDontFollow);
-
-        System.out.println("\nTotal runtime: " + (System.nanoTime() - startTime) / 1000000 + " ms.");
-    }
 }
