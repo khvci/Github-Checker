@@ -36,8 +36,9 @@ public class Main {
 
 
     private static void getResults(String userName, InputStream followerStream, InputStream followingStream) throws IOException {
-        readSource(userName, 5, "followers");
-        readSource(userName, 4, "following");
+        SourceReader sourceReader = new SourceReader();
+        sourceReader.readSource(userName, 5, "followers");
+        sourceReader.readSource(userName, 4, "following");
 
         followersSetBuilder(followersSet, followerStream);
 
@@ -46,36 +47,6 @@ public class Main {
         differenceFinder(followersSet, followingSet, dontFollowYou, youDontFollow);
 
         printResults(startTime, followersSet, followingSet, dontFollowYou, youDontFollow);
-    }
-
-
-    private static void readSource(String userName, int numberOfPages, String group) throws IOException {
-        ArrayList<String> linkList = new ArrayList<>();
-        for (int i = 1; i <= numberOfPages; i++) {
-            linkList.add("https://github.com/" + userName + "?page=" + i + "&tab=" + group);
-        }
-
-        StringBuilder content = new StringBuilder();
-        for (String s : linkList) {
-            URLConnection connection;
-            try {
-                connection = new URL(s).openConnection();
-                Scanner scanner = new Scanner(connection.getInputStream());
-                scanner.useDelimiter("\\Z");
-                content.append(scanner.next());
-                scanner.close();
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-
-        }
-        if (group.equals("followers")) {
-            Path followers = Path.of("src/followers.txt");
-            Files.writeString(followers, content.toString());
-        } else {
-            Path following = Path.of("src/following.txt");
-            Files.writeString(following, content.toString());
-        }
     }
 
 
