@@ -23,6 +23,9 @@ public class Main {
 
         getResults("khvci", followerStream, followingStream);
 
+        txtFileManager.deleteTxtFile("followers.txt");
+        txtFileManager.deleteTxtFile("following.txt");
+
     }
 
     static ArrayList<String> followersSet = new ArrayList<>();
