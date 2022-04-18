@@ -29,8 +29,8 @@ public class Main {
 
 
     private static void getResults(InputStream followerStream, InputStream followingStream) throws IOException {
-        readSource("followers");
-        readSource("following");
+        readSource("khvci", 5, "followers");
+        readSource("khvci", 4, "following");
 
         followersSetBuilder(followersSet, followerStream);
 
@@ -45,27 +45,13 @@ public class Main {
     }
 
 
-    private static void readSource(String group) throws IOException {
-
-
+    private static void readSource(String userName, int numberOfPages, String group) throws IOException {
         ArrayList<String> linkList = new ArrayList<>();
-
-        if (group.equals("followers")) {
-            linkList.add("https://github.com/khvci?page=1&tab=followers");
-            linkList.add("https://github.com/khvci?page=2&tab=followers");
-            linkList.add("https://github.com/khvci?page=3&tab=followers");
-            linkList.add("https://github.com/khvci?page=4&tab=followers");
-            linkList.add("https://github.com/khvci?page=5&tab=followers");
-        } else {
-            linkList.add("https://github.com/khvci?page=1&tab=following");
-            linkList.add("https://github.com/khvci?page=2&tab=following");
-            linkList.add("https://github.com/khvci?page=3&tab=following");
-            linkList.add("https://github.com/khvci?page=4&tab=following");
-            //linkList.add("https://github.com/khvci?page=5&tab=following");
+        for (int i = 1; i <= numberOfPages; i++) {
+            linkList.add("https://github.com/" + userName + "?page=" + i + "&tab=" + group);
         }
 
         StringBuilder content = new StringBuilder();
-
         for (String s : linkList) {
             URLConnection connection;
             try {
@@ -87,7 +73,6 @@ public class Main {
             Files.writeString(following, content.toString());
         }
     }
-
 
 
     private static String getUserName(String str) {
