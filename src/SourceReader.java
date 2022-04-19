@@ -7,7 +7,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SourceReader {
-    public void readSource(String userName, int numberOfPages, String group) throws IOException {
+    String userName;
+    int numberOfPages;
+    String group;
+
+    public SourceReader(String userName, int numberOfPages, String group) {
+        this.userName = userName;
+        this.numberOfPages = numberOfPages;
+        this.group = group;
+    }
+
+    public void readSource() throws IOException {
         ArrayList<String> linkList = new ArrayList<>();
         for (int i = 1; i <= numberOfPages; i++) {
             linkList.add("https://github.com/" + userName + "?page=" + i + "&tab=" + group);
