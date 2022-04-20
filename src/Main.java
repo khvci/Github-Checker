@@ -9,12 +9,7 @@ public class Main extends Thread {
     static int followingPageNumber = 4;
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        //GithubChecker githubChecker = new GithubChecker();
-        //githubChecker.checkGithub("khvci", 5, 4);
-
-
         long startTime = System.nanoTime();
-
 
         TxtFileManager txtFileManager = new TxtFileManager();
         txtFileManager.createTxtFile("followers.txt");
@@ -23,17 +18,16 @@ public class Main extends Thread {
         InputStream followerStream = new FileInputStream("src/followers.txt");
         InputStream followingStream = new FileInputStream("src/following.txt");
 
-
         Main secondThread = new Main();
         secondThread.start();
 
         SourceReader sourceReader = new SourceReader(userToCheck, followersPageNumber, "followers");
         sourceReader.readSource();
 
+        secondThread.join();
+
         ArrayList<String> followers = new ArrayList<>();
         ArrayList<String> following = new ArrayList<>();
-
-        secondThread.join();
 
         ArrayBuilder arrayBuilder = new ArrayBuilder();
         arrayBuilder.arrayBuilder(followers, followerStream);
@@ -55,7 +49,7 @@ public class Main extends Thread {
     @Override
     public void run() {
         try {
-            SourceReader sourceReader2 = new SourceReader(userToCheck, followersPageNumber, "following");
+            SourceReader sourceReader2 = new SourceReader(userToCheck, followingPageNumber, "following");
             sourceReader2.readSource();
         } catch (IOException e) {
             System.out.println("second thread problem");
