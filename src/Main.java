@@ -4,12 +4,14 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 public class Main extends Thread {
+    static long startTime = System.nanoTime();
     static String userToCheck = "khvci";
-    static int followersPageNumber = 5;
-    static int followingPageNumber = 4;
+    static int followersPageNumber;
+    static int followingPageNumber;
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        long startTime = System.nanoTime();
+
+        UserNumbersGetter.readProfilePageSource(userToCheck);
 
         TxtFileManager txtFileManager = new TxtFileManager();
         txtFileManager.createTxtFile("followers.txt");
@@ -42,6 +44,7 @@ public class Main extends Thread {
 
         txtFileManager.deleteTxtFile("followers.txt");
         txtFileManager.deleteTxtFile("following.txt");
+        txtFileManager.deleteTxtFile("profile.txt");
 
         System.out.println("\nTotal runtime: " + (System.nanoTime() - startTime) / 1000000 + " ms.");
     }
