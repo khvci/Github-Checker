@@ -44,7 +44,6 @@ public class Main extends Thread {
 
         txtFileManager.deleteTxtFile("followers.txt");
         txtFileManager.deleteTxtFile("following.txt");
-        txtFileManager.deleteTxtFile("profile.txt");
 
         System.out.println("\nTotal runtime: " + (System.nanoTime() - startTime) / 1000000 + " ms.");
     }
