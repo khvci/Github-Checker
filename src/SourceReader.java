@@ -20,7 +20,10 @@ public class SourceReader {
     public void readSource() throws IOException {
         ArrayList<String> linkList = new ArrayList<>();
         for (int i = 1; i <= numberOfPages; i++) {
-            linkList.add("https://github.com/" + userName + "?page=" + i + "&tab=" + group);
+
+            linkList.add(String.format(
+                    "https://github.com/%s?page=%d&tab=%s",
+                    userName, i, group));
         }
 
         StringBuilder content = new StringBuilder();
@@ -36,7 +39,7 @@ public class SourceReader {
             }
         }
 
-        Path path = Path.of("src/" + group + ".txt");
+        Path path = Path.of(String.format("src/%s.txt", group));
         Files.writeString(path, content);
     }
 }

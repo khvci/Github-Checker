@@ -5,16 +5,14 @@ public class TxtFileManager {
     public void createTxtFile(String txtFileName) {
         File file = new File("src/" + txtFileName);
         try {
-            //noinspection ResultOfMethodCallIgnored
-            file.createNewFile();  //creates a new file
+            file.createNewFile();
         } catch (IOException e) {
-            e.printStackTrace();    //prints exception if any
+            e.printStackTrace();
         }
     }
 
     public void deleteTxtFile(String txtFileName) {
         File file = new File("src/" + txtFileName);
-        //noinspection ResultOfMethodCallIgnored
         file.delete();
     }
 }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Main extends Thread {
     static long startTime = System.nanoTime();
-    static String userToCheck = "khvci";
+    static String userToCheck = "engindemirog";
     static int followersPageNumber;
     static int followingPageNumber;
 
@@ -39,13 +39,16 @@ public class Main extends Thread {
         differenceFinder.findDifference(followers, following);
 
         ResultPrinter resultPrinter = new ResultPrinter();
-        resultPrinter.printResults(followers, following,
-                differenceFinder.dontFollowYou, differenceFinder.youDontFollow);
+        resultPrinter.printResults(
+                followers,
+                following,
+                differenceFinder.dontFollowYou,
+                differenceFinder.youDontFollow);
 
         txtFileManager.deleteTxtFile("followers.txt");
         txtFileManager.deleteTxtFile("following.txt");
 
-        System.out.println("\nTotal runtime: " + (System.nanoTime() - startTime) / 1000000 + " ms.");
+        System.out.println(String.format("\nTotal runtime: %d ms.", (System.nanoTime() - startTime) / 1000000));
     }
 
     @Override

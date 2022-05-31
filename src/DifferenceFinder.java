@@ -5,15 +5,18 @@ public class DifferenceFinder {
     public ArrayList<Object> youDontFollow = new ArrayList<>();
 
     @SuppressWarnings("SuspiciousMethodCalls")
-    public void findDifference(ArrayList<String> followersHash, ArrayList<String> followingHash) {
-        for (Object i : followersHash) {
-            if (!followingHash.contains(i)) {
+    public void findDifference(
+            ArrayList<String> followersArray,
+            ArrayList<String> followingArray) {
+
+        for (Object i : followersArray) {
+            if (!followingArray.contains(i)) {
                 youDontFollow.add(i);
             }
         }
 
-        for (Object j : followingHash) {
-            if (!followersHash.contains(j)) {
+        for (Object j : followingArray) {
+            if (!followersArray.contains(j)) {
                 dontFollowYou.add(j);
             }
         }
