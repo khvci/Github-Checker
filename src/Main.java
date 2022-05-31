@@ -39,7 +39,7 @@ public class Main extends Thread {
         differenceFinder.findDifference(followers, following);
 
         ResultPrinter resultPrinter = new ResultPrinter();
-        resultPrinter.printResults(startTime, followers, following,
+        resultPrinter.printResults(followers, following,
                 differenceFinder.dontFollowYou, differenceFinder.youDontFollow);
 
         txtFileManager.deleteTxtFile("followers.txt");
