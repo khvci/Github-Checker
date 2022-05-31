@@ -7,20 +7,19 @@ public class ResultPrinter {
             ArrayList<Object> dontFollowYou,
             ArrayList<Object> youDontFollow) {
 
-        System.out.print("\nFollowers: " + followersSet.size());
-        System.out.println(" | Following: " + followingSet.size());
+        System.out.printf(
+                "\nFollowers: %d| Following: %d\n",
+                followersSet.size(),
+                followingSet.size());
 
-
-        System.out.println(String.format(
-                "\nWho does not follow you back: %d\n%s",
+        System.out.printf(
+                "\nWho does not follow you back: %d\n%s%n",
                 dontFollowYou.size(),
-                dontFollowYou));
+                dontFollowYou);
 
-        System.out.println(String.format(
-                "\nWho you do not follow back: %d\n%s",
+        System.out.printf(
+                "\nWho you do not follow back: %d\n%s%n",
                 youDontFollow.size(),
-                youDontFollow));
-
-
+                youDontFollow);
     }
 }
