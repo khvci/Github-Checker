@@ -8,7 +8,7 @@ public class ResultPrinter {
             ArrayList<Object> youDontFollow) {
 
         System.out.printf(
-                "\nFollowers: %d| Following: %d\n",
+                "\nFollowers: %d | Following: %d\n",
                 followersSet.size(),
                 followingSet.size());
 

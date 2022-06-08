@@ -58,7 +58,10 @@ public class Main extends Thread {
             sourceReader2.readSource();
         } catch (IOException e) {
             System.out.println("second thread problem");
-            throw new RuntimeException(e);
+            //throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            System.out.println("InterruptedException");
+            //throw new RuntimeException(e);
         }
     }
 }
