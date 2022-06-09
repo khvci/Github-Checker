@@ -26,7 +26,7 @@ public class SourceReader {
         }
 
         StringBuilder content = new StringBuilder();
-        for (int i = 0; i < linkList.size() - 1; i++) {
+        for (int i = 0; i < linkList.size(); i++) {
 
             URLConnection connection;
             try {

@@ -8,13 +8,14 @@ public class ArrayBuilder {
             ArrayList<String> groupArray,
             InputStream inputStream) {
 
-        try (Scanner scannerFollowing = new Scanner(inputStream, StandardCharsets.UTF_8.name())) {
+        try (Scanner scannerFollowing = new Scanner(
+                inputStream, StandardCharsets.UTF_8.name())) {
             while (scannerFollowing.hasNextLine()) {
                 String followingLine = scannerFollowing.nextLine();
                 if (followingLine.startsWith(
-                        "      <a class=\"d-inline-block\" data-hovercard-type" +
-                        "=\"user\" data-hovercard-url=\"/users/")) {
-                    groupArray.add(UserNameFinder.getUserName(followingLine));
+                        "      <a class=\"d-inline-block ")) {
+                    groupArray.add(UserNameFinder
+                            .getUserName(followingLine));
                 }
             }
         }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Main extends Thread {
     static long startTime = System.nanoTime();
-    static String userToCheck = "";
+    static String userToCheck = "khvci";
     static int followersPageNumber;
     static int followingPageNumber;
 
@@ -23,7 +23,8 @@ public class Main extends Thread {
         Main secondThread = new Main();
         secondThread.start();
 
-        SourceReader sourceReader = new SourceReader(userToCheck, followersPageNumber, "followers");
+        SourceReader sourceReader = new SourceReader(
+                userToCheck, followersPageNumber, "followers");
         sourceReader.readSource();
 
         secondThread.join();
@@ -38,8 +39,7 @@ public class Main extends Thread {
         DifferenceFinder differenceFinder = new DifferenceFinder();
         differenceFinder.findDifference(followers, following);
 
-        ResultPrinter resultPrinter = new ResultPrinter();
-        resultPrinter.printResults(
+        new ResultPrinter().printResults(
                 followers,
                 following,
                 differenceFinder.dontFollowYou,
@@ -48,13 +48,16 @@ public class Main extends Thread {
         txtFileManager.deleteTxtFile("followers.txt");
         txtFileManager.deleteTxtFile("following.txt");
 
-        System.out.printf("\nTotal runtime: %d ms.%n", (System.nanoTime() - startTime) / 1000000);
+        System.out.printf(
+                "\nTotal runtime: %d ms.%n",
+                (System.nanoTime() - startTime) / 1000000);
     }
 
     @Override
     public void run() {
         try {
-            SourceReader sourceReader2 = new SourceReader(userToCheck, followingPageNumber, "following");
+            SourceReader sourceReader2 = new SourceReader(
+                    userToCheck, followingPageNumber, "following");
             sourceReader2.readSource();
         } catch (IOException e) {
             System.out.println("second thread problem");
