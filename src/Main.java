@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Main extends Thread {
     static long startTime = System.nanoTime();
-    static String userToCheck = "khvci";
+    static String userToCheck = "";
     static int followersPageNumber;
     static int followingPageNumber;
 
