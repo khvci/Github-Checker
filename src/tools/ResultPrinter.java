@@ -1,11 +1,13 @@
-import java.util.ArrayList;
+package tools;
+
+import java.util.List;
 
 public class ResultPrinter {
     public void printResults(
-            ArrayList<String> followersSet,
-            ArrayList<String> followingSet,
-            ArrayList<Object> dontFollowYou,
-            ArrayList<Object> youDontFollow) {
+            List<String> followersSet,
+            List<String> followingSet,
+            List<Object> dontFollowYou,
+            List<Object> youDontFollow) {
 
         System.out.printf(
                 "\nFollowers: %d | Following: %d\n",

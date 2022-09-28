@@ -1,15 +1,17 @@
+package tools;
+
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ArrayBuilder {
     public void arrayBuilder(
-            ArrayList<String> groupArray,
+            List<String> groupArray,
             InputStream inputStream) {
 
         try (Scanner scannerFollowing = new Scanner(
-                inputStream, StandardCharsets.UTF_8.name())) {
+                inputStream, StandardCharsets.UTF_8)) {
             while (scannerFollowing.hasNextLine()) {
                 String followingLine = scannerFollowing.nextLine();
                 if (followingLine.startsWith(

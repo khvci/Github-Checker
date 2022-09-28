@@ -1,3 +1,5 @@
+package tools;
+
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -33,7 +35,6 @@ public class SourceReader {
                 connection = new URL(linkList.get(i)).openConnection();
                 scanConnection(content, connection);
             } catch (Exception ex) {
-                //ex.printStackTrace();
                 System.out.printf("%d pages has been read, sleeping for 1 min to prevent from HTTP 429 (too many requests).%n", i);
                 Thread.sleep(60000);
 

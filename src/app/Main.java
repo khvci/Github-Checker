@@ -1,13 +1,27 @@
+package app;
+
+import tools.*;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class Main extends Thread {
-    static long startTime = System.nanoTime();
+    private static final long startTime = System.nanoTime();
     static String userToCheck = "khvci";
-    static int followersPageNumber;
-    static int followingPageNumber;
+    private static int followersPageNumber;
+    private static int followingPageNumber;
+
+    public static void setFollowersPageNumber(int followersPageNumber) {
+        Main.followersPageNumber = followersPageNumber;
+    }
+
+    public static void setFollowingPageNumber(int followingPageNumber) {
+        Main.followingPageNumber = followingPageNumber;
+    }
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
@@ -17,8 +31,8 @@ public class Main extends Thread {
         txtFileManager.createTxtFile("followers.txt");
         txtFileManager.createTxtFile("following.txt");
 
-        InputStream followerStream = new FileInputStream("src/followers.txt");
-        InputStream followingStream = new FileInputStream("src/following.txt");
+        InputStream followerStream = Files.newInputStream(Path.of("src/followers.txt"));
+        InputStream followingStream = Files.newInputStream(Path.of("src/following.txt"));
 
         Main secondThread = new Main();
         secondThread.start();
@@ -49,8 +63,10 @@ public class Main extends Thread {
         txtFileManager.deleteTxtFile("following.txt");
 
         System.out.printf(
-                "\nTotal runtime: %d ms.%n",
+                "\nTotal runtime: %d ms.\n",
                 (System.nanoTime() - startTime) / 1000000);
+
+
     }
 
     @Override
@@ -61,10 +77,9 @@ public class Main extends Thread {
             sourceReader2.readSource();
         } catch (IOException e) {
             System.out.println("second thread problem");
-            //throw new RuntimeException(e);
         } catch (InterruptedException e) {
             System.out.println("InterruptedException");
-            //throw new RuntimeException(e);
+            interrupt();
         }
     }
 }

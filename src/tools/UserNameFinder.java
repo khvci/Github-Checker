@@ -1,3 +1,5 @@
+package tools;
+
 public class UserNameFinder {
     public static String getUserName(String str) {
         return str

@@ -1,10 +1,14 @@
+package tools;
+
+import app.Main;
+
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
 
 public class UserNumbersGetter {
-    static StringBuilder profilePageSourceCode = new StringBuilder("");
+    private static final StringBuilder profilePageSourceCode = new StringBuilder();
 
     public static void readProfilePageSource(String userToCheck) throws NumberFormatException, IOException {
         URLConnection connection;
@@ -25,20 +29,18 @@ public class UserNumbersGetter {
 
 
         try {
-            Main.followersPageNumber = (Integer.parseInt(subString1) / 50 + 1);
+            Main.setFollowersPageNumber((Integer.parseInt(subString1) / 50 + 1));
         } catch (Exception ex) {
             String[] temp1 = subString1.split("\\.");
             subString1 = temp1.length < 2 ?
                     temp1[0].split("k")[0] + "000" :
                     temp1[0] + temp1[1].charAt(0) +  "00";
 
-            Main.followersPageNumber = ((Integer.parseInt(subString1) + 100) / 50 + 1);
-
-            //ex.printStackTrace();
+            app.Main.setFollowersPageNumber(((Integer.parseInt(subString1) + 100) / 50 + 1));
         }
 
         try {
-            Main.followingPageNumber = (Integer.parseInt(subString2) / 50 + 1);
+            Main.setFollowingPageNumber((Integer.parseInt(subString2) / 50 + 1));
         } catch (Exception ex) {
 
             String[] temp2 = subString2.split("\\.");
@@ -46,9 +48,7 @@ public class UserNumbersGetter {
                     temp2[0].split("k")[0] + "000" :
                     temp2[0] + temp2[1].charAt(0) +  "00";
 
-            Main.followingPageNumber = ((Integer.parseInt(subString2) + 100) / 50 + 1);
-
-            //ex.printStackTrace();
+            Main.setFollowingPageNumber(((Integer.parseInt(subString2) + 100) / 50 + 1));
         }
     }
 }

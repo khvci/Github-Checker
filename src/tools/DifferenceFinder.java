@@ -1,13 +1,16 @@
+package tools;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class DifferenceFinder {
-    public ArrayList<Object> dontFollowYou = new ArrayList<>();
-    public ArrayList<Object> youDontFollow = new ArrayList<>();
+    public List<Object> dontFollowYou = new ArrayList<>();
+    public List<Object> youDontFollow = new ArrayList<>();
 
     @SuppressWarnings("SuspiciousMethodCalls")
     public void findDifference(
-            ArrayList<String> followersArray,
-            ArrayList<String> followingArray) {
+            List<String> followersArray,
+            List<String> followingArray) {
 
         for (Object i : followersArray) {
             if (!followingArray.contains(i)) {
