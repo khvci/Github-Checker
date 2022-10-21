@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class Main extends Thread {
     private static final long startTime = System.nanoTime();
-    static String userToCheck = "";
+    static String userToCheck = "khvci";
     private static int followersPageNumber;
     private static int followingPageNumber;
 
