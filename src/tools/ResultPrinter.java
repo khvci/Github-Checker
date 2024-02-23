@@ -14,10 +14,15 @@ public class ResultPrinter {
                 followersSet.size(),
                 followingSet.size());
 
-        System.out.printf(
+        /*System.out.printf(
                 "\nWho does not follow you back: %d\n%s%n",
                 dontFollowYou.size(),
-                dontFollowYou);
+                dontFollowYou);*/
+
+        System.out.println("Who does not follow you back: " + dontFollowYou.size());
+        for (Object s : dontFollowYou) {
+            System.out.println("https://github.com/" + s);
+        }
 
         System.out.printf(
                 "\nWho you do not follow back: %d\n%s%n",
