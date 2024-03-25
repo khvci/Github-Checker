@@ -18,6 +18,10 @@ public class ArrayBuilder {
                         "      <a class=\"d-inline-block no-underline mb-1\" data-hovercard-type=\"user\"")) {
                     groupArray.add(UserNameFinder
                             .getUserName(followingLine));
+                } else if (followingLine.startsWith(
+                        "      <a class=\"d-inline-block no-underline mb-1\" data-hovercard-type=\"organization\"")) {
+                    groupArray.add(UserNameFinder
+                            .getCompanyName(followingLine));
                 }
             }
         }
