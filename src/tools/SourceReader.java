@@ -1,12 +1,14 @@
 package tools;
 
 import java.io.IOException;
-import java.net.URL;
+import java.net.URISyntaxException;
 import java.net.URLConnection;
+import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 
 public class SourceReader {
     String userName;
@@ -19,7 +21,7 @@ public class SourceReader {
         this.group = group;
     }
 
-    public void readSource() throws IOException, InterruptedException {
+    public void readSource() throws IOException, InterruptedException, URISyntaxException {
         ArrayList<String> linkList = new ArrayList<>();
         for (int i = 1; i <= numberOfPages; i++) {
             linkList.add(String.format(
@@ -32,13 +34,15 @@ public class SourceReader {
 
             URLConnection connection;
             try {
-                connection = new URL(linkList.get(i)).openConnection();
+//                connection = new URL(linkList.get(i)).openConnection();
+                connection = new URI(linkList.get(i)).toURL().openConnection();
                 scanConnection(content, connection);
             } catch (Exception ex) {
                 System.out.printf("%d pages has been read, sleeping for 1 min to prevent from HTTP 429 (too many requests).%n", i);
                 Thread.sleep(60000);
 
-                connection = new URL(linkList.get(i)).openConnection();
+//                connection = new URL(linkList.get(i)).openConnection();
+                connection = new URI(linkList.get(i)).toURL().openConnection();
                 scanConnection(content, connection);
             }
         }

@@ -2,9 +2,9 @@ package app;
 
 import tools.*;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class Main extends Thread {
         Main.followingPageNumber = followingPageNumber;
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException, InterruptedException, URISyntaxException {
 
         UserNumbersGetter.readProfilePageSource(userToCheck);
 
@@ -80,6 +80,8 @@ public class Main extends Thread {
         } catch (InterruptedException e) {
             System.out.println("InterruptedException");
             interrupt();
+        } catch (URISyntaxException e) {
+            System.out.println("URISyntaxException");
         }
     }
 }
