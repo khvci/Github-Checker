@@ -15,12 +15,12 @@ public class Main extends Thread {
     private static int followersPageNumber;
     private static int followingPageNumber;
 
-    public static void setFollowersPageNumber(int followersPageNumber) {
-        Main.followersPageNumber = followersPageNumber;
+    public static void setFollowersPageNumber(int num) {
+        followersPageNumber = num;
     }
 
-    public static void setFollowingPageNumber(int followingPageNumber) {
-        Main.followingPageNumber = followingPageNumber;
+    public static void setFollowingPageNumber(int num) {
+        followingPageNumber = num;
     }
 
     public static void main(String[] args) throws IOException, InterruptedException, URISyntaxException {
