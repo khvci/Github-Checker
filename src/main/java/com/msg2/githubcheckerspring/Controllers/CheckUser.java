@@ -3,7 +3,6 @@ package com.msg2.githubcheckerspring.Controllers;
 import com.msg2.githubcheckerspring.App.GithubChecker;
 import com.msg2.githubcheckerspring.Entities.MainUser;
 import com.msg2.githubcheckerspring.Managers.UserManager;
-import com.msg2.githubcheckerspring.Utils.UserNumbersGetter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
