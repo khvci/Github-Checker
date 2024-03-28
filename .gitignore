@@ -26,5 +26,7 @@ hs_err_pid*
 *.idea
 *.DS_Store
 out/production/
-/legacy/Github-Checker.iml
+/legacy/
 out
+/src/*Following.txt
+/src/*Followers.txt
