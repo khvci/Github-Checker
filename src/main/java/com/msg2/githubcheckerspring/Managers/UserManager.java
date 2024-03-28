@@ -3,9 +3,8 @@ package com.msg2.githubcheckerspring.Managers;
 import com.msg2.githubcheckerspring.Entities.MainUser;
 
 public class UserManager {
-    MainUser user = null;
-    public MainUser createMainUser(String username) {
-        user = new MainUser();
+    public static MainUser createMainUser(String username) {
+        MainUser user = new MainUser();
         user.setUserName(username);
         return user;
     }

@@ -9,9 +9,7 @@ import java.net.URISyntaxException;
 
 public class GithubChecker {
     public static MainUser run(String username) throws IOException, URISyntaxException {
-        UserManager userManager = new UserManager();
-        MainUser user = userManager.createMainUser(username);
-
+        MainUser user = UserManager.createMainUser(username);
         UserNumbersGetter.readProfilePageSource(user);
         return user;
     }
