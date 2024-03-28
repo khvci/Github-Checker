@@ -7,13 +7,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 @RestController
 public class CheckUser {
     @GetMapping("/github-checker/{username}")
-    public ResponseEntity<String> showUserName(@PathVariable String username) throws IOException {
+    public ResponseEntity<String> showUserName(@PathVariable String username) throws IOException, URISyntaxException {
         MainUser user = new MainUser();
         user.setUserName(username);
 

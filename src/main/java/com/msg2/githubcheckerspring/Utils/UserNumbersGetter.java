@@ -1,19 +1,18 @@
 package com.msg2.githubcheckerspring.Utils;
 
-
 import com.msg2.githubcheckerspring.Entities.MainUser;
-
 import java.io.IOException;
-import java.net.URL;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URLConnection;
 import java.util.Scanner;
 
 public class UserNumbersGetter {
     private static final StringBuilder profilePageSourceCode = new StringBuilder();
 
-    public static void readProfilePageSource(MainUser user) throws NumberFormatException, IOException {
+    public static void readProfilePageSource(MainUser user) throws NumberFormatException, IOException, URISyntaxException {
         URLConnection connection;
-        connection = new URL("https://github.com/" + user.getUserName()).openConnection();
+        connection = new URI("https://github.com/" + user.getUserName()).toURL().openConnection();
 
         Scanner scanner = new Scanner(connection.getInputStream());
         scanner.useDelimiter("\\Z");
