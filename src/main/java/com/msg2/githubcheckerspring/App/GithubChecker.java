@@ -7,7 +7,9 @@ import com.msg2.githubcheckerspring.Utils.PageNumbersGetter;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
 
 public class GithubChecker {
     public static MainUser run(String username) throws IOException, URISyntaxException {
@@ -16,6 +18,11 @@ public class GithubChecker {
 
         File followersTxtFile = TxtFileManager.createTxtFile(username + "Followers.txt");
         File followingTxtFile = TxtFileManager.createTxtFile(username + "Following.txt");
+
+        InputStream followerStream = Files.newInputStream(followersTxtFile.toPath());
+        InputStream followingStream = Files.newInputStream(followingTxtFile.toPath());
+
+//        InputStream followingStream = Files.newInputStream(Path.of("src/following.txt"));
 
         //last step
         TxtFileManager.deleteTxtFile(followersTxtFile);
