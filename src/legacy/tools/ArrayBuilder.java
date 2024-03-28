@@ -1,4 +1,4 @@
-package tools;
+package legacy.tools;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;

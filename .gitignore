@@ -26,5 +26,5 @@ hs_err_pid*
 *.idea
 *.DS_Store
 out/production/
-/Github-Checker.iml
+/legacy/Github-Checker.iml
 out

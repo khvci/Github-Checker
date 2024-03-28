@@ -1,0 +1,39 @@
+@font-face {
+    font-family: 'RetroFont';
+    src: url('retro.ttf') format('truetype');
+}
+
+body {
+    background-color: #0d0d0d;
+    color: #f2f2f2;
+    font-size: 16px;
+    line-height: 1.4;
+    padding: 20px;
+    margin: 10px;
+    border: 1px solid #059905;
+}
+
+h1 {
+    color: #15723c;
+    font-family: 'RetroFont', monospace;
+    font-size: 34px;
+    line-height: 1.4;
+    margin: 0;
+
+}
+h2 {
+    color: #e6e6e6;
+    font-size: 16px;
+}
+
+h3 {
+    color: #bfbfbf;
+    font-size: 12px;
+
+}
+
+h4 {
+    color: #a6a6a6;
+    font-size: 11px;
+    margin-bottom: 30px;
+}

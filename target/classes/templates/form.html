@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/styles.css">
+        <title>Username Form</title>
+    </head>
+
+    <body>
+        <h1>github checker</h1>
+        <h2>What is your username?</h2>
+
+        <form id="usernameForm">
+            <input type="text" id="username" name="username">
+            <input type="button" onclick="location.href=getUsername();" value="Check My Followers"/>
+        </form>
+
+        <script>
+            function getUsername() {
+                let user = document.getElementById('username').value
+                let link = 'http://localhost:8080/github-checker/' + user
+                return link;
+            }
+
+            // Add an event listener to handle Enter key press on the input field
+            document.getElementById('username').addEventListener('keypress', getListener());
+            function getListener() {
+                return function (event) {
+                    if (event.key === 'Enter') {
+                        event.preventDefault(); // Prevent the default form submission behavior
+                        location.href = getUsername(); // Redirect to the URL returned by getUsername()
+                    }
+                };
+            }
+        </script>
+
+    </body>
+</html>

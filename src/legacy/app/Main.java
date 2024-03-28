@@ -1,6 +1,6 @@
-package app;
+package legacy.app;
 
-import tools.*;
+import legacy.tools.*;
 
 import java.io.IOException;
 import java.io.InputStream;

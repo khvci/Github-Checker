@@ -1,4 +1,4 @@
-package tools;
+package legacy.tools;
 
 import java.io.IOException;
 import java.net.URISyntaxException;

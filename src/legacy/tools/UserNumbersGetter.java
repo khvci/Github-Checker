@@ -1,6 +1,6 @@
-package tools;
+package legacy.tools;
 
-import app.Main;
+import legacy.app.Main;
 
 import java.io.IOException;
 import java.net.URL;
@@ -37,7 +37,7 @@ public class UserNumbersGetter {
                     temp1[0].split("k")[0] + "000" :
                     temp1[0] + temp1[1].charAt(0) +  "00";
 
-            app.Main.setFollowersPageNumber(((Integer.parseInt(subString1) + 100) / 50 + 1));
+            legacy.app.Main.setFollowersPageNumber(((Integer.parseInt(subString1) + 100) / 50 + 1));
         }
 
         try {

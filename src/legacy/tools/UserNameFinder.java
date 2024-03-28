@@ -1,4 +1,4 @@
-package tools;
+package legacy.tools;
 
 public class UserNameFinder {
     public static String getUserName(String str) {
