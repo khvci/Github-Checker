@@ -1,6 +1,8 @@
 package com.msg2.githubcheckerspring.Controllers;
 
+import com.msg2.githubcheckerspring.App.GithubChecker;
 import com.msg2.githubcheckerspring.Entities.MainUser;
+import com.msg2.githubcheckerspring.Managers.UserManager;
 import com.msg2.githubcheckerspring.Utils.UserNumbersGetter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,17 +16,9 @@ import java.net.URISyntaxException;
 public class CheckUser {
     @GetMapping("/github-checker/{username}")
     public ResponseEntity<String> showUserName(@PathVariable String username) throws IOException, URISyntaxException {
-        MainUser user = new MainUser();
-        user.setUserName(username);
+        MainUser user = GithubChecker.run(username);
 
-        UserNumbersGetter.readProfilePageSource(user);
-
-        String userCreated = user.getUserName();
-        System.out.println(userCreated + " is created.");
-
-        String controlMessage = userCreated.concat("<br>"
-                + "followers page number: " + user.getFollowersPageNumber() + "<br>"
-                + "following page number: " + user.getFollowingPageNumber());
+        String controlMessage = UserManager.checkUserStats(user);
 
         return new ResponseEntity<>(controlMessage, HttpStatus.OK);
     }

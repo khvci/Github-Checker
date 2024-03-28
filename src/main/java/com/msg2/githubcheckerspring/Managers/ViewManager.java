@@ -5,7 +5,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 
-public class UsernameManager {
+public class ViewManager {
     public static Resource getUsername() {
         return new ClassPathResource("templates/form.html");
     }
