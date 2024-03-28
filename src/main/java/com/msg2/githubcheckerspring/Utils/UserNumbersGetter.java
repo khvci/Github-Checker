@@ -8,11 +8,13 @@ import java.net.URLConnection;
 import java.util.Scanner;
 
 public class UserNumbersGetter {
-    private static final StringBuilder profilePageSourceCode = new StringBuilder();
 
-    public static void readProfilePageSource(MainUser user) throws NumberFormatException, IOException, URISyntaxException {
-        URLConnection connection;
-        connection = new URI("https://github.com/" + user.getUserName()).toURL().openConnection();
+    public static void readProfilePageSource(MainUser user)
+            throws NumberFormatException, IOException, URISyntaxException {
+
+        StringBuilder profilePageSourceCode = new StringBuilder();
+        URLConnection connection = new URI("https://github.com/"
+                + user.getUserName()).toURL().openConnection();
 
         Scanner scanner = new Scanner(connection.getInputStream());
         scanner.useDelimiter("\\Z");
@@ -24,8 +26,10 @@ public class UserNumbersGetter {
                 profilePageSourceCode.indexOf("</span>\n          followers"));
 
         String subString2 = profilePageSourceCode.substring(
-                profilePageSourceCode.indexOf("?tab=following\">\n          <span class=\"text-bold color-fg-default\">") + 68,
-                profilePageSourceCode.indexOf("</span>\n          following"));
+                profilePageSourceCode
+                        .indexOf("?tab=following\">\n          <span class=\"text-bold color-fg-default\">") + 68,
+                profilePageSourceCode
+                        .indexOf("</span>\n          following"));
 
         int followersPageNumber = -1;
 
