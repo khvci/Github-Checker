@@ -39,15 +39,20 @@ public class MainUser {
         return followers;
     }
 
-    public void addToFollowers(String userName) {
-        this.followers.add(userName);
+    public void setFollowers(List<String> followers) {
+        this.followers = followers;
     }
 
     public List<String> getFollowing() {
         return following;
     }
 
-    public void setFollowing(String userName) {
-        this.following.add(userName);
+    public void setFollowing(List<String> following) {
+        this.following = following;
+    }
+
+    public enum UserTypes {
+        FOLLOWER,
+        FOLLOWING
     }
 }
