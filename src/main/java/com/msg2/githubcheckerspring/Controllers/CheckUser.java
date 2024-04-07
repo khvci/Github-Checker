@@ -14,7 +14,7 @@ import java.net.URISyntaxException;
 @RestController
 public class CheckUser {
     @GetMapping("/github-checker/{username}")
-    public ResponseEntity<String> showUserName(@PathVariable String username) throws IOException, URISyntaxException {
+    public ResponseEntity<String> showUserName(@PathVariable String username) throws IOException, URISyntaxException, InterruptedException {
         MainUser user = GithubChecker.run(username);
 
         String controlMessage = UserManager.checkUserStats(user);
