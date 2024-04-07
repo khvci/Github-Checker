@@ -9,6 +9,8 @@ public class MainUser {
     private int followingPageNumber;
     private List<String> followers = new ArrayList<>();
     private List<String> following = new ArrayList<>();
+    private List<String> youDontFollow = new ArrayList<>();
+    private List<String> dontFollowYou = new ArrayList<>();
 
     //getters and setters
     public String getUserName() {
@@ -51,8 +53,19 @@ public class MainUser {
         this.following = following;
     }
 
-    public enum UserTypes {
-        FOLLOWER,
-        FOLLOWING
+    public List<String> getYouDontFollow() {
+        return youDontFollow;
+    }
+
+    public void setYouDontFollow(List<String> youDontFollow) {
+        this.youDontFollow = youDontFollow;
+    }
+
+    public List<String> getDontFollowYou() {
+        return dontFollowYou;
+    }
+
+    public void setDontFollowYou(List<String> dontFollowYou) {
+        this.dontFollowYou = dontFollowYou;
     }
 }

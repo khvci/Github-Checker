@@ -9,17 +9,18 @@ public class UserManager {
         return user;
     }
 
-    public static void setPageNumbers(MainUser user) {
-
-    }
-
     public static String checkUserStats(MainUser user) {
         String userCreated = user.getUserName();
         System.out.println(userCreated + " is created.");
 
         String controlMessage = userCreated.concat("<br>"
                 + "followers page number: " + user.getFollowersPageNumber() + "<br>"
-                + "following page number: " + user.getFollowingPageNumber());
+                + "following page number: " + user.getFollowingPageNumber()) + "<br>"
+                + "dont follow you back: " + user.getDontFollowYou() + "<br>"
+                + "you dont follow back: " + user.getYouDontFollow() + "<br>"
+                + "followers count: " + user.getFollowers().size() + "<br>"
+                + "following count: " + user.getFollowing().size() + "<br>" ;
+
 
         return controlMessage;
     }

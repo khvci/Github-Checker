@@ -4,6 +4,7 @@ import com.msg2.githubcheckerspring.Entities.MainUser;
 import com.msg2.githubcheckerspring.Managers.TxtFileManager;
 import com.msg2.githubcheckerspring.Managers.UserManager;
 import com.msg2.githubcheckerspring.Utils.ArrayBuilder;
+import com.msg2.githubcheckerspring.Utils.DifferenceFinder;
 import com.msg2.githubcheckerspring.Utils.PageNumbersGetter;
 import com.msg2.githubcheckerspring.Utils.SourceReader;
 
@@ -12,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GithubChecker {
@@ -33,8 +35,17 @@ public class GithubChecker {
         List<String> followingArray = ArrayBuilder.arrayBuilder(followingStream);
         user.setFollowing(followingArray);
 
-        System.out.println("followers: " + followersArray.size());
-        System.out.println("following: " + followingArray.size());
+        List<String> youDontFollow = DifferenceFinder.findDiff(user.getFollowers(), user.getFollowing());
+        user.setYouDontFollow(youDontFollow);
+
+        List<String> dontFollowYou = DifferenceFinder.findDiff(user.getFollowing(), user.getFollowers());
+        user.setDontFollowYou(dontFollowYou);
+
+//        System.out.println("dont follow you back: " + user.getDontFollowYou());
+//        System.out.println("you dont follow back: " + user.getYouDontFollow());
+//
+//        System.out.println("followers: " + followersArray.size());
+//        System.out.println("following: " + followingArray.size());
 
         //last step
         TxtFileManager.deleteTxtFile(followersTxtFile);
