@@ -53,14 +53,22 @@ public class Main extends Thread {
         DifferenceFinder differenceFinder = new DifferenceFinder();
         differenceFinder.findDifference(followers, following);
 
-        new ResultPrinter().printResults(
-                followers,
+        ResultStringBuilder resultStringBuilder = new ResultStringBuilder();
+//        resultStringBuilder.printResults(
+//                followers,
+//                following,
+//                differenceFinder.dontFollowYou,
+//                differenceFinder.youDontFollow);
+
+        String resultToReturn = resultStringBuilder.CreateResultString(followers,
                 following,
                 differenceFinder.dontFollowYou,
                 differenceFinder.youDontFollow);
 
+        System.out.println(resultToReturn);
         txtFileManager.deleteTxtFile("followers.txt");
         txtFileManager.deleteTxtFile("following.txt");
+
 
         System.out.printf(
                 "\nTotal runtime: %d ms.\n",
