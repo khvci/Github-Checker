@@ -2,6 +2,7 @@ package app;
 
 import tools.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
@@ -28,8 +29,8 @@ public class Main extends Thread {
         UserNumbersGetter.readProfilePageSource(userToCheck);
 
         TxtFileManager txtFileManager = new TxtFileManager();
-        txtFileManager.createTxtFile("followers.txt");
-        txtFileManager.createTxtFile("following.txt");
+        File followersTxtFile = txtFileManager.create("followers.txt");
+        File followingTxtFile = txtFileManager.create("following.txt");
 
         InputStream followerStream = Files.newInputStream(Path.of("src/followers.txt"));
         InputStream followingStream = Files.newInputStream(Path.of("src/following.txt"));
@@ -60,8 +61,8 @@ public class Main extends Thread {
                 differenceFinder.getYouDontFollow());
         System.out.println(resultToReturn);
 
-        txtFileManager.deleteTxtFile("followers.txt");
-        txtFileManager.deleteTxtFile("following.txt");
+        txtFileManager.delete(followersTxtFile);
+        txtFileManager.delete(followingTxtFile);
 
         System.out.printf(
                 "\nTotal runtime: %d ms.\n",
