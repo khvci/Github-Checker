@@ -39,7 +39,7 @@ public class Main extends Thread {
 
         SourceReader sourceReader = new SourceReader(
                 userToCheck, followersPageNumber, "followers");
-        sourceReader.readSource();
+        sourceReader.read();
 
         secondThread.join();
 
@@ -75,7 +75,7 @@ public class Main extends Thread {
         try {
             SourceReader sourceReader2 = new SourceReader(
                     userToCheck, followingPageNumber, "following");
-            sourceReader2.readSource();
+            sourceReader2.read();
         } catch (IOException e) {
             System.out.println("second thread problem");
         } catch (InterruptedException e) {
