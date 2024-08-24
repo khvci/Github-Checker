@@ -56,8 +56,8 @@ public class Main extends Thread {
         ResultStringBuilder resultStringBuilder = new ResultStringBuilder();
         String resultToReturn = resultStringBuilder.CreateResultString(followers,
                 following,
-                differenceFinder.dontFollowYou,
-                differenceFinder.youDontFollow);
+                differenceFinder.getDontFollowYou(),
+                differenceFinder.getYouDontFollow());
         System.out.println(resultToReturn);
 
         txtFileManager.deleteTxtFile("followers.txt");

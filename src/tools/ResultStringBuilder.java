@@ -5,8 +5,8 @@ import java.util.List;
 public class ResultStringBuilder {
     public String CreateResultString(List<String> followersSet,
                                      List<String> followingSet,
-                                     List<Object> dontFollowYou,
-                                     List<Object> youDontFollow) {
+                                     List<String> dontFollowYou,
+                                     List<String> youDontFollow) {
 
         StringBuilder result = new StringBuilder();
         result
