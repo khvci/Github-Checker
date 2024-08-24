@@ -7,8 +7,6 @@ public class DifferenceFinder {
     private final List<String> dontFollowYou = new ArrayList<>();
     private final List<String> youDontFollow = new ArrayList<>();
 
-
-//    @SuppressWarnings("SuspiciousMethodCalls")
     public void findDifference(
             List<String> followersArray,
             List<String> followingArray) {

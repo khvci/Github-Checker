@@ -11,9 +11,9 @@ import java.util.Scanner;
 
 
 public class SourceReader {
-    String userName;
-    int numberOfPages;
-    String group;
+    private final String userName;
+    private final int numberOfPages;
+    private final String group;
 
     public SourceReader(String userName, int numberOfPages, String group) {
         this.userName = userName;
@@ -34,14 +34,12 @@ public class SourceReader {
 
             URLConnection connection;
             try {
-//                connection = new URL(linkList.get(i)).openConnection();
                 connection = new URI(linkList.get(i)).toURL().openConnection();
                 scanConnection(content, connection);
             } catch (Exception ex) {
                 System.out.printf("%d pages has been read, sleeping for 1 min to prevent from HTTP 429 (too many requests).%n", i);
                 Thread.sleep(60000);
 
-//                connection = new URL(linkList.get(i)).openConnection();
                 connection = new URI(linkList.get(i)).toURL().openConnection();
                 scanConnection(content, connection);
             }
