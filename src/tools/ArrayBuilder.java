@@ -4,10 +4,11 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 public class ArrayBuilder {
     public void arrayBuilder(
-            List<String> groupArray,
+            Set<String> groupArray,
             InputStream inputStream) {
 
         try (Scanner scannerFollowing = new Scanner(

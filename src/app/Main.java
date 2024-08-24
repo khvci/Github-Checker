@@ -9,6 +9,8 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Main extends Thread {
     private static final long startTime = System.nanoTime();
@@ -44,8 +46,8 @@ public class Main extends Thread {
 
         secondThread.join();
 
-        ArrayList<String> followers = new ArrayList<>();
-        ArrayList<String> following = new ArrayList<>();
+        Set<String> followers = new HashSet<>();
+        Set<String> following = new HashSet<>();
 
         ArrayBuilder arrayBuilder = new ArrayBuilder();
         arrayBuilder.arrayBuilder(followers, followerStream);

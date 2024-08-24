@@ -1,12 +1,13 @@
 package tools;
 
 import java.util.List;
+import java.util.Set;
 
 public class ResultStringBuilder {
-    public String CreateResultString(List<String> followersSet,
-                                     List<String> followingSet,
-                                     List<String> dontFollowYou,
-                                     List<String> youDontFollow) {
+    public String CreateResultString(Set<String> followersSet,
+                                     Set<String> followingSet,
+                                     Set<String> dontFollowYou,
+                                     Set<String> youDontFollow) {
 
         StringBuilder result = new StringBuilder();
         result
