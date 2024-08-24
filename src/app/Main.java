@@ -2,6 +2,7 @@ package app;
 
 import tools.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
@@ -28,8 +29,8 @@ public class Main extends Thread {
         UserNumbersGetter.readProfilePageSource(userToCheck);
 
         TxtFileManager txtFileManager = new TxtFileManager();
-        txtFileManager.createTxtFile("followers.txt");
-        txtFileManager.createTxtFile("following.txt");
+        File followersTxtFile = txtFileManager.create("followers.txt");
+        File followingTxtFile = txtFileManager.create("following.txt");
 
         InputStream followerStream = Files.newInputStream(Path.of("src/followers.txt"));
         InputStream followingStream = Files.newInputStream(Path.of("src/following.txt"));
@@ -39,7 +40,7 @@ public class Main extends Thread {
 
         SourceReader sourceReader = new SourceReader(
                 userToCheck, followersPageNumber, "followers");
-        sourceReader.readSource();
+        sourceReader.read();
 
         secondThread.join();
 
@@ -56,12 +57,12 @@ public class Main extends Thread {
         ResultStringBuilder resultStringBuilder = new ResultStringBuilder();
         String resultToReturn = resultStringBuilder.CreateResultString(followers,
                 following,
-                differenceFinder.dontFollowYou,
-                differenceFinder.youDontFollow);
+                differenceFinder.getDontFollowYou(),
+                differenceFinder.getYouDontFollow());
         System.out.println(resultToReturn);
 
-        txtFileManager.deleteTxtFile("followers.txt");
-        txtFileManager.deleteTxtFile("following.txt");
+        txtFileManager.delete(followersTxtFile);
+        txtFileManager.delete(followingTxtFile);
 
         System.out.printf(
                 "\nTotal runtime: %d ms.\n",
@@ -75,7 +76,7 @@ public class Main extends Thread {
         try {
             SourceReader sourceReader2 = new SourceReader(
                     userToCheck, followingPageNumber, "following");
-            sourceReader2.readSource();
+            sourceReader2.read();
         } catch (IOException e) {
             System.out.println("second thread problem");
         } catch (InterruptedException e) {

@@ -4,24 +4,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DifferenceFinder {
-    public List<Object> dontFollowYou = new ArrayList<>();
-    public List<Object> youDontFollow = new ArrayList<>();
+    private final List<String> dontFollowYou = new ArrayList<>();
+    private final List<String> youDontFollow = new ArrayList<>();
 
-    @SuppressWarnings("SuspiciousMethodCalls")
     public void findDifference(
             List<String> followersArray,
             List<String> followingArray) {
 
-        for (Object i : followersArray) {
-            if (!followingArray.contains(i)) {
-                youDontFollow.add(i);
+        // Find users who follow you but you don't follow back
+        for (String follower : followersArray) {
+            if (!followingArray.contains(follower)) {
+                youDontFollow.add(follower);
             }
         }
 
-        for (Object j : followingArray) {
-            if (!followersArray.contains(j)) {
-                dontFollowYou.add(j);
+        // Find users who you follow but they don't follow you back
+        for (String followingTo : followingArray) {
+            if (!followersArray.contains(followingTo)) {
+                dontFollowYou.add(followingTo);
             }
         }
+    }
+
+    //getters
+    public List<String> getDontFollowYou() {
+        return dontFollowYou;
+    }
+
+    public List<String> getYouDontFollow() {
+        return youDontFollow;
     }
 }
