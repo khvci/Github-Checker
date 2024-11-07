@@ -39,7 +39,7 @@ public class UserNumbersGetter {
         try {
             Main.setFollowersPageNumber((Integer.parseInt(followersPageNumberAsString) / 50 + 1));
         } catch (Exception ex) {
-            System.out.println("ERROR: followersPageNumberAsString: "+followersPageNumberAsString);
+            System.out.println("WARNING: followersPageNumberAsString: "+followersPageNumberAsString);
             String[] temp1 = followersPageNumberAsString.split("\\.");
             followersPageNumberAsString = temp1.length < 2 ?
                     temp1[0].split("k")[0] + "000" :
