@@ -58,7 +58,7 @@ public class UserNumbersGetter {
         try {
             Main.setFollowingPageNumber((Integer.parseInt(followingPageNumberAsString) / 50 + 1));
         } catch (Exception ex) {
-            System.out.println("ERROR: followingPageNumberAsString: "+followingPageNumberAsString);
+            System.out.println("WARNING: followingPageNumberAsString: "+followingPageNumberAsString);
             String[] temp2 = followingPageNumberAsString.split("\\.");
             followingPageNumberAsString = temp2.length < 2 ?
                     temp2[0].split("k")[0] + "000" :
