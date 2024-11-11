@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class ArrayBuilder {
     public void arrayBuilder(
-            Set<String> groupArray,
+            List<String> groupArray,
             InputStream inputStream) {
 
         try (Scanner scannerFollowing = new Scanner(

@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Main extends Thread {
@@ -46,8 +47,8 @@ public class Main extends Thread {
 
         secondThread.join();
 
-        Set<String> followers = new HashSet<>();
-        Set<String> following = new HashSet<>();
+        List<String> followers = new ArrayList<>();
+        List<String> following = new ArrayList<>();
 
         ArrayBuilder arrayBuilder = new ArrayBuilder();
         arrayBuilder.arrayBuilder(followers, followerStream);

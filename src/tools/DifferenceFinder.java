@@ -6,12 +6,12 @@ import java.util.List;
 import java.util.Set;
 
 public class DifferenceFinder {
-    private final Set<String> dontFollowYou = new HashSet<>();
-    private final Set<String> youDontFollow = new HashSet<>();
+    private final List<String> dontFollowYou = new ArrayList<>();
+    private final List<String> youDontFollow = new ArrayList<>();
 
     public void findDifference(
-            Set<String> followersArray,
-            Set<String> followingArray) {
+            List<String> followersArray,
+            List<String> followingArray) {
 
         // Find users who follow you but you don't follow back
         for (String follower : followersArray) {
@@ -29,11 +29,11 @@ public class DifferenceFinder {
     }
 
     //getters
-    public Set<String> getDontFollowYou() {
+    public List<String> getDontFollowYou() {
         return dontFollowYou;
     }
 
-    public Set<String> getYouDontFollow() {
+    public List<String> getYouDontFollow() {
         return youDontFollow;
     }
 }
